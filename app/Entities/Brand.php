@@ -22,7 +22,7 @@ use App\Traits\SequenceTrait;
  * @property string $brand_logo
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Entities\Categorie[] $cats
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Entities\Category[] $cats
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Entities\Brand[] $children
  * @property-read \App\Entities\Brand $parent
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Entities\Product[] $products
@@ -126,7 +126,7 @@ class Brand extends BaseModel
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function cats(){
-        return $this->belongsToMany(Categorie::class,'brand_categories','brand_id','cat_id');
+        return $this->belongsToMany(Category::class,'brand_categories','brand_id','cat_id');
     }
 
 

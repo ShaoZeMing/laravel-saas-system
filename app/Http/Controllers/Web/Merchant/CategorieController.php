@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Web\Merchant;
 
 use App\Entities\Brand;
 use App\Entities\BrandM;
-use App\Entities\Categorie;
-use App\Entities\CategorieM;
+use App\Entities\Category;
+use App\Entities\CategoryM;
 use App\Entities\Malfunction;
 use App\Http\Controllers\Controller;
-use App\Repositories\CategorieRepositoryEloquent;
+use App\Repositories\CategoryRepositoryEloquent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -46,7 +46,7 @@ class CategorieController extends Controller
                             Log::info('ids',[self::$ids,getMerchantId()]);
                             $form = new \ShaoZeMing\Merchant\Widgets\Form();
                             $form->action(merchant_base_path('api/merchants/'.getMerchantId().'/cats'));
-                            $form->multipleSelect('cats', '品类名称')->options(CategorieM::whereNotIn('id',self::$ids)->get()->pluck('cat_name', 'id'));
+                            $form->multipleSelect('cats', '品类名称')->options(CategoryM::whereNotIn('id',self::$ids)->get()->pluck('cat_name', 'id'));
                             $column->append((new Box('添加系统已有品类', $form))->style('success'));
                         });
                     });
@@ -54,7 +54,7 @@ class CategorieController extends Controller
                         $row->column(12, function (Column $column) {
                             $form = new \ShaoZeMing\Merchant\Widgets\Form();
                             $form->action(merchant_base_path('cats'));
-                            $form->select('cat_parent_id', '父级')->options(CategorieM::selectMerchantOptions());
+                            $form->select('cat_parent_id', '父级')->options(CategoryM::selectMerchantOptions());
                             $form->text('cat_name', '名称')->rules('required');
                             $form->textarea('cat_desc', '描述')->default('');
                             $form->image('cat_logo', 'LOGO')->resize(200, 200)->uniqueName()->removable();
@@ -77,7 +77,7 @@ class CategorieController extends Controller
      */
     protected function treeView()
     {
-        return CategorieM::tree(function (Tree $tree) {
+        return CategoryM::tree(function (Tree $tree) {
             $tree->query(function ($model) {
                 $merchant =getMerchantInfo();
                 $cats = $merchant->cats();
@@ -141,7 +141,7 @@ class CategorieController extends Controller
         try{
             Log::info('删除分类',[$id,__METHOD__]);
             $merchant = getMerchantInfo();
-            $id= Categorie::getDelIds($id);
+            $id= Category::getDelIds($id);
             $res = $merchant->cats()->detach($id);
             if ($res) {
                 return response()->json([
@@ -171,7 +171,7 @@ class CategorieController extends Controller
      */
     protected function grid()
     {
-        return Merchant::grid(CategorieM::class, function (Grid $grid) {
+        return Merchant::grid(CategoryM::class, function (Grid $grid) {
 
             $grid->model()->OrderBy('cat_parent_id');
             $grid->column('cat_name', '分类名称');
@@ -201,10 +201,10 @@ class CategorieController extends Controller
      */
     protected function form()
     {
-        return Merchant::form(CategorieM::class, function (Form $form) {
+        return Merchant::form(CategoryM::class, function (Form $form) {
             $form->display('id', 'ID');
             $form->text('cat_name', '名称')->rules('required');
-            $form->select('cat_parent_id', '父级')->options(CategorieM::selectOptions());
+            $form->select('cat_parent_id', '父级')->options(CategoryM::selectOptions());
             $form->textarea('cat_desc', '描述')->default('');
             $form->image('cat_logo', 'LOGO')->resize(200, 200)->uniqueName()->removable();
             $mBrands =  getMerchantInfo()->brands()->count();
@@ -213,7 +213,7 @@ class CategorieController extends Controller
             }
             $form->hidden('created_id')->default(getMerchantId());
             $form->saved(function (Form $form){
-                $cats = Categorie::getAddIds([$form->model()->id]);
+                $cats = Category::getAddIds([$form->model()->id]);
                 getMerchantInfo()->cats()->syncWithoutDetaching($cats);
             });
 
@@ -230,7 +230,7 @@ class CategorieController extends Controller
     public function apiCats(Request $request)
     {
         $q = $request->get('q');
-        $data = CategorieM::where('cat_name', 'like', "%$q%")->get(['id', 'cat_name as text']);
+        $data = CategoryM::where('cat_name', 'like', "%$q%")->get(['id', 'cat_name as text']);
         return $data;
     }
 
@@ -249,7 +249,7 @@ class CategorieController extends Controller
             $data = Malfunction::whereNotIn('id', $mftIds)->get(['id', DB::raw('malfunction_name as text')]);
             return $data;
         }
-        $q = Categorie::getDelIds($q);
+        $q = Category::getDelIds($q);
         $data = Malfunction::whereNotIn('id', $mftIds)->whereIn('cat_id', $q)->get(['id', DB::raw('malfunction_name as text')]);
         return $data;
     }
@@ -260,7 +260,7 @@ class CategorieController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function apiProducts(Request $request, CategorieRepositoryEloquent $categorieRepository)
+    public function apiProducts(Request $request, CategoryRepositoryEloquent $categorieRepository)
     {
         $q = $request->get('q');
         if(!$q){

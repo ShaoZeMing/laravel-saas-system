@@ -5,7 +5,7 @@ namespace App\Repositories;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\merchant_categorieRepository;
-use App\Entities\MerchantCategorie;
+use App\Entities\MerchantCategory;
 use App\Validators\MerchantCategorieValidator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Log;
  * Class MerchantCategorieRepositoryEloquent
  * @package namespace App\Repositories;
  */
-class MerchantCategorieRepositoryEloquent extends BaseRepository implements MerchantCategorieRepository
+class MerchantCategoryRepositoryEloquent extends BaseRepository implements MerchantCategoryRepository
 {
     /**
      * Specify Model class name
@@ -22,7 +22,7 @@ class MerchantCategorieRepositoryEloquent extends BaseRepository implements Merc
      */
     public function model()
     {
-        return MerchantCategorie::class;
+        return MerchantCategory::class;
     }
 
     

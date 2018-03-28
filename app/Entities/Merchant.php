@@ -84,7 +84,7 @@ use Shaozeming\LumenPostgis\Eloquent\PostgisTrait;
  * @property-read \App\Entities\MerchantAccount $account
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Entities\MerchantBill[] $bills
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Entities\Brand[] $brands
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Entities\Categorie[] $cats
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Entities\Category[] $cats
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Entities\Product[] $products
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Entities\Site[] $sites
  * @property-read \App\Entities\WxUser $wxUser
@@ -141,7 +141,7 @@ class Merchant extends BaseModel
 
     public function cats()
     {
-        return $this->belongsToMany(Categorie::class, 'merchant_categories','merchant_id','cat_id');
+        return $this->belongsToMany(Category::class, 'merchant_categories','merchant_id','cat_id');
 
     }
 

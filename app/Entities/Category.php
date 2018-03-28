@@ -17,25 +17,27 @@ namespace App\Entities;
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Entities\Brand[] $brands
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Entities\Categorie[] $children
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Entities\Category[] $children
  * @property-read mixed $categorie_logo
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Entities\Malfunction[] $malfunctions
- * @property-read \App\Entities\Categorie $parent
+ * @property-read \App\Entities\Category $parent
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Entities\Product[] $products
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\Categorie whereCatDesc($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\Categorie whereCatLevel($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\Categorie whereCatLogo($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\Categorie whereCatName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\Categorie whereCatParentId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\Categorie whereCatSort($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\Categorie whereCatState($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\Categorie whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\Categorie whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\Categorie whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\Category whereCatDesc($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\Category whereCatLevel($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\Category whereCatLogo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\Category whereCatName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\Category whereCatParentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\Category whereCatSort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\Category whereCatState($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\Category whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\Category whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\Category whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class Categorie extends BaseModel
+class Category extends BaseModel
 {
+    public $table='categories';
+
     protected $guarded = [];
 
 
@@ -134,7 +136,7 @@ class Categorie extends BaseModel
      */
     public function parent()
     {
-        return $this->belongsTo(Categorie::class, 'cat_parent_id');
+        return $this->belongsTo(Category::class, 'cat_parent_id');
     }
 
     /**
@@ -144,7 +146,7 @@ class Categorie extends BaseModel
      */
     public function children()
     {
-        return $this->hasMany(Categorie::class, 'cat_parent_id');
+        return $this->hasMany(Category::class, 'cat_parent_id');
     }
 
 

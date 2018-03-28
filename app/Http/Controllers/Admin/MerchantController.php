@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Entities\Area;
-use App\Entities\Categorie;
+use App\Entities\Category;
 use App\Entities\Merchant;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
@@ -108,7 +108,7 @@ class MerchantController extends Controller
             $form->text('merchant_name', '名称');
             $form->text('merchant_nickname', '昵称');
             $form->image('merchant_face', '头像')->resize(200, 200)->uniqueName()->removable();;
-            $form->multipleSelect('cats', '分类')->options(Categorie::all()->pluck('cat_name', 'id'));
+            $form->multipleSelect('cats', '分类')->options(Category::all()->pluck('cat_name', 'id'));
             $form->select('merchant_province_id', '省')->options(Area::where('parent_id', 0)->orderBy('id')->get()->pluck('name', 'id'))->load('merchant_city_id', '/api/city');
             $form->select('merchant_city_id', '市')->load('merchant_district_id', '/api/city');
             $form->select('merchant_district_id', '区');

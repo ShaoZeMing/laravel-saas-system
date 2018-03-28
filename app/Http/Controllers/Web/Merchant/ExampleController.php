@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Web\Merchant;
 
 use App\Entities\Brand;
-use App\Entities\Categorie;
+use App\Entities\Category;
 use App\Entities\Malfunction;
 use App\Entities\Order;
 use App\Entities\Product;

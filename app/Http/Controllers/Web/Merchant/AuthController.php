@@ -65,9 +65,11 @@ class AuthController extends Controller
             $credentials['email'] = '';
             $credentials['user_type'] = 1;
             $merchantUser =  Administrator::create($credentials);
+            $merchantUser->merchant_id = $merchant->id;
+            $merchantUser->save();
             // add role to user.
             $merchantUser->roles()->save(Role::where('slug','administrator')->first());
-            return Redirect::back()->withInput()->withErrors(['mobile' => $this->getFailedLoginMessage()]);
+            return \redirect('/merchant');
         }catch (\Exception $e){
             Log::error($e,[__METHOD__]);
             return Redirect::back()->withInput()->withErrors($e->getMessage());

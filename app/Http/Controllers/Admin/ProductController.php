@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Entities\Brand;
-use App\Entities\Categorie;
+use App\Entities\Category;
 use App\Entities\Malfunction;
 use App\Entities\Product;
 use App\Http\Controllers\Controller;
@@ -92,7 +92,7 @@ class ProductController extends Controller
                 $filter->disableIdFilter();
                 $filter->like('product_name','产品名称');
                 $filter->equal('brand_id','产品品牌')->select(Brand::all()->pluck('brand_name', 'id'));
-                $filter->equal('cat_id','产品分类')->select(Categorie::all()->pluck('cat_name', 'id'));
+                $filter->equal('cat_id','产品分类')->select(Category::all()->pluck('cat_name', 'id'));
                 $filter->between('created_at', '创建时间')->datetime();
             });
 
@@ -112,7 +112,7 @@ class ProductController extends Controller
             $form->text('product_version', '产品型号')->default('');
             $form->text('product_size', '产品规格')->default('');
             $form->select('brand_id', '产品品牌')->options(Brand::all()->pluck('brand_name', 'id'))->load('cat_id','/admin/api/brand/cats');
-            $form->select('cat_id', '产品分类')->options(Categorie::all()->pluck('cat_name', 'id'))->load('malfunctions','/admin/api/cat/malfunctions');
+            $form->select('cat_id', '产品分类')->options(Category::all()->pluck('cat_name', 'id'))->load('malfunctions','/admin/api/cat/malfunctions');
             $form->multipleSelect('malfunctions', '故障类型')->options(Malfunction::all()->pluck('malfunction_name', 'id'));
             $form->textarea('product_desc', '描述');
             $form->number('product_sort', '排序')->setWidth(2);

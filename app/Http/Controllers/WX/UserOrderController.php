@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\WX;
 
-use App\Repositories\CategorieRepositoryEloquent;
+use App\Repositories\CategoryRepositoryEloquent;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
@@ -19,10 +19,10 @@ class UserOrderController extends Controller
 
 
     /**
-     * @param CategorieRepositoryEloquent $categorieRepository
+     * @param CategoryRepositoryEloquent $categorieRepository
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
      */
-    public function index(CategorieRepositoryEloquent $categorieRepository)
+    public function index(CategoryRepositoryEloquent $categorieRepository)
     {
         $context = [
             'method' => __METHOD__,

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Entities\Area;
-use App\Entities\Categorie;
+use App\Entities\Category;
 use App\Entities\Order;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;

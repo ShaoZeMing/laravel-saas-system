@@ -5,14 +5,14 @@ namespace App\Repositories;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\site_categorieRepository;
-use App\Entities\SiteCategorie;
+use App\Entities\SiteCategory;
 use App\Validators\SiteCategorieValidator;
 
 /**
  * Class SiteCategorieRepositoryEloquent
  * @package namespace App\Repositories;
  */
-class SiteCategorieRepositoryEloquent extends BaseRepository implements SiteCategorieRepository
+class SiteCategoryRepositoryEloquent extends BaseRepository implements SiteCategoryRepository
 {
     /**
      * Specify Model class name
@@ -21,7 +21,7 @@ class SiteCategorieRepositoryEloquent extends BaseRepository implements SiteCate
      */
     public function model()
     {
-        return SiteCategorie::class;
+        return SiteCategory::class;
     }
 
     

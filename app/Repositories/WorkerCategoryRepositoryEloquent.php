@@ -4,15 +4,15 @@ namespace App\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\categorieRepository;
-use App\Entities\Categorie;
-use App\Validators\CategorieValidator;
+use App\Repositories\worker_categorieRepository;
+use App\Entities\WorkerCategory;
+use App\Validators\WorkerCategorieValidator;
 
 /**
- * Class CategorieRepositoryEloquent
+ * Class WorkerCategorieRepositoryEloquent
  * @package namespace App\Repositories;
  */
-class CategorieRepositoryEloquent extends BaseRepository implements CategorieRepository
+class WorkerCategoryRepositoryEloquent extends BaseRepository implements WorkerCategoryRepository
 {
     /**
      * Specify Model class name
@@ -21,7 +21,7 @@ class CategorieRepositoryEloquent extends BaseRepository implements CategorieRep
      */
     public function model()
     {
-        return Categorie::class;
+        return WorkerCategory::class;
     }
 
     
@@ -32,10 +32,5 @@ class CategorieRepositoryEloquent extends BaseRepository implements CategorieRep
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
-    }
-
-
-    public function getCats(){
-        return $this->findByField('parent_id',0);
     }
 }

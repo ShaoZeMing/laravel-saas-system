@@ -21,7 +21,7 @@ use App\Traits\SequenceTrait;
  * @property int $malfunction_sort
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
- * @property-read \App\Entities\Categorie $cat
+ * @property-read \App\Entities\Category $cat
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Entities\Product[] $products
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Entities\Resolvent[] $resolvents
  * @property-read \App\Entities\ServiceType $serviceType
@@ -49,7 +49,7 @@ class Malfunction extends BaseModel
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function cat(){
-        return $this->belongsTo(Categorie::class);
+        return $this->belongsTo(Category::class);
     }
 
 

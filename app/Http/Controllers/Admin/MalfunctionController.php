@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Entities\Brand;
-use App\Entities\Categorie;
+use App\Entities\Category;
 use App\Entities\Malfunction;
 use App\Entities\Product;
 use App\Entities\ServiceType;
@@ -99,7 +99,7 @@ class MalfunctionController extends Controller
                 $filter->disableIdFilter();
                 $filter->like('malfunction_name','名称');
                 $filter->equal('service_type_id','服务类型')->select(ServiceType::all()->pluck('name', 'id'));
-                $filter->equal('cat_id','分类')->select(Categorie::all()->pluck('name', 'id'));
+                $filter->equal('cat_id','分类')->select(Category::all()->pluck('name', 'id'));
                 $filter->between('created_at', '创建时间')->datetime();
             });
         });
@@ -114,7 +114,7 @@ class MalfunctionController extends Controller
     {
         return Admin::form(Malfunction::class, function (Form $form) {
             $form->display('id', 'ID');
-            $form->select('cat_id', '所属品类')->options(Categorie::all()->pluck('cat_name', 'id'))->load('products','/admin/api/cat/products');
+            $form->select('cat_id', '所属品类')->options(Category::all()->pluck('cat_name', 'id'))->load('products','/admin/api/cat/products');
             $form->text('malfunction_name', '故障名称')->rules('required');
             $form->select('service_type_id', '服务类型')->options(ServiceType::all()->pluck('service_type_name', 'id'));
             $form->multipleSelect('products', '产品关联')->options(Product::all()->pluck('product_name', 'id'));

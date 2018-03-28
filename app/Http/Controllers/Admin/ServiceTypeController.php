@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Entities\Brand;
-use App\Entities\Categorie;
+use App\Entities\Category;
 use App\Entities\Malfunction;
 use App\Entities\Product;
 use App\Entities\ServiceType;

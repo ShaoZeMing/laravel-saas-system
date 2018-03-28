@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Web\Merchant;
 
 use App\Entities\BrandM;
-use App\Entities\CategorieM;
+use App\Entities\CategoryM;
 use App\Entities\Malfunction;
 use App\Entities\MerchantProduct;
 use App\Entities\Product;
@@ -130,7 +130,7 @@ class ProductController extends Controller
                 $filter->disableIdFilter();
                 $filter->like('product_name','产品名称');
                 $filter->equal('brand_id','产品品牌')->select(BrandM::selectMerchantOptions());
-                $filter->equal('cat_id','产品分类')->select(CategorieM::selectMerchantOptions());
+                $filter->equal('cat_id','产品分类')->select(CategoryM::selectMerchantOptions());
                 $filter->between('created_at', '创建时间')->datetime();
             });
 
@@ -149,7 +149,7 @@ class ProductController extends Controller
             $form->text('product_version', '产品型号')->default('&nbsp;');
             $form->text('product_size', '产品规格')->default('&nbsp;');
             $form->select('brand_id', '产品品牌')->options(BrandM::selectMerchantOptions('—'));
-            $form->select('cat_id', '产品分类')->options(CategorieM::selectMerchantOptions('—'))->load('malfunctions','/merchant/api/cat/malfunctions');
+            $form->select('cat_id', '产品分类')->options(CategoryM::selectMerchantOptions('—'))->load('malfunctions','/merchant/api/cat/malfunctions');
             $form->multipleSelect('malfunctions', '故障类型')->options(getMerchantInfo()->malfunctions()->get()->pluck('malfunction_name', 'id'));
             $form->textarea('product_desc', '产品描述');
             $form->saved(function (Form $form){

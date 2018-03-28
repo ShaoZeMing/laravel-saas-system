@@ -18,7 +18,7 @@ use Shaozeming\LumenPostgis\Eloquent\PostgisTrait;
  * @property int $order_type
  * @property int $biz_type
  * @property int $cat_id
- * @property \App\Entities\Categorie $cat
+ * @property \App\Entities\Category $cat
  * @property int $brand_id
  * @property \App\Entities\Brand $brand
  * @property int $product_id
@@ -181,7 +181,7 @@ class Order extends BaseModel
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function cat(){
-        return $this->belongsTo(Categorie::class);
+        return $this->belongsTo(Category::class);
     }
 
     /**

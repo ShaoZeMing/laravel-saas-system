@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Entities\Brand;
-use App\Entities\Categorie;
+use App\Entities\Category;
 use App\Http\Controllers\Controller;
 use App\Repositories\BrandRepositoryEloquent;
 use Encore\Admin\Controllers\ModelForm;
@@ -115,7 +115,7 @@ class BrandController extends Controller
             $form->select('brand_parent_id', '父级品牌')->options($parent);
             $form->textarea('brand_desc', '品牌描述')->default('');
             $form->image('brand_logo', '品牌LOGO')->resize(200,200)->uniqueName()->removable();
-            $form->multipleSelect('cats', '经营品类')->options(Categorie::all()->pluck('cat_name', 'id'));
+            $form->multipleSelect('cats', '经营品类')->options(Category::all()->pluck('cat_name', 'id'));
             $form->switch('brand_state','状态')->default(1);
             $form->number('brand_sort', '排序');
         });

@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Web\Merchant;
 
 use App\Entities\Brand;
 use App\Entities\BrandM;
-use App\Entities\Categorie;
-use App\Entities\CategorieM;
+use App\Entities\Category;
+use App\Entities\CategoryM;
 use App\Http\Controllers\Controller;
 use App\Repositories\BrandRepositoryEloquent;
 use Illuminate\Support\Facades\Log;
@@ -58,7 +58,7 @@ class BrandController extends Controller
                             $form->image('brand_logo', 'LOGO')->resize(200, 200)->uniqueName()->removable();
                             $mCats =  getMerchantInfo()->cats()->count();
                             if($mCats){
-                                $form->multipleSelect('cats', '经营品类')->options(CategorieM::selectOptions());
+                                $form->multipleSelect('cats', '经营品类')->options(CategoryM::selectOptions());
                             }
                             $form->hidden('brand_state', '状态')->default(0);
                             $form->hidden('created_id')->default(getMerchantId());
@@ -203,7 +203,7 @@ class BrandController extends Controller
             $form->image('brand_logo', '品牌LOGO')->resize(200,200)->uniqueName()->removable();
             $mCats =  getMerchantInfo()->cats()->count();
             if($mCats){
-                $form->multipleSelect('cats', '经营品类')->options(CategorieM::selectOptions());
+                $form->multipleSelect('cats', '经营品类')->options(CategoryM::selectOptions());
             }
             $form->hidden('created_id')->default(getMerchantId());
             $form->saved(function (Form $form){

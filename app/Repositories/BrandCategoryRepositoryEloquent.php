@@ -5,14 +5,14 @@ namespace App\Repositories;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\brand_categorieRepository;
-use App\Entities\BrandCategorie;
-use App\Validators\BrandCategorieValidator;
+use App\Entities\BrandCategory;
+use App\Validators\BrandCategoryValidator;
 
 /**
- * Class BrandCategorieRepositoryEloquent
+ * Class BrandCategoryRepositoryEloquent
  * @package namespace App\Repositories;
  */
-class BrandCategorieRepositoryEloquent extends BaseRepository implements BrandCategorieRepository
+class BrandCategoryRepositoryEloquent extends BaseRepository implements BrandCategoryRepository
 {
     /**
      * Specify Model class name
@@ -21,7 +21,7 @@ class BrandCategorieRepositoryEloquent extends BaseRepository implements BrandCa
      */
     public function model()
     {
-        return BrandCategorie::class;
+        return BrandCategory::class;
     }
 
     

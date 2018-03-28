@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Web\Merchant;
 
-use App\Entities\CategorieM;
+use App\Entities\CategoryM;
 use App\Entities\Malfunction;
 use App\Entities\MerchantMalfunction;
 use App\Entities\ServiceTypeM;
@@ -44,7 +44,7 @@ class MalfunctionController extends Controller
                             Log::info(cache(getMerchantId().'_mft_ids'),['缓存']);
                             $form = new \ShaoZeMing\Merchant\Widgets\Form();
                             $form->action(merchant_base_path('api/merchants/'.getMerchantId().'/malfunctions'));
-                            $form->select('cat', '产品分类')->options(CategorieM::selectMerchantOptions('—'))->load('malfunctions','/merchant/api/cat/malfunctions');
+                            $form->select('cat', '产品分类')->options(CategoryM::selectMerchantOptions('—'))->load('malfunctions','/merchant/api/cat/malfunctions');
                             $form->multipleSelect('malfunctions', '故障类型')->options(Malfunction::whereNotIn('id',self::$ids)->get()->pluck('malfunction_name', 'id'));
                             $column->append((new Box('添加系统已有故障', $form))->style('success'));
                         });
@@ -52,7 +52,7 @@ class MalfunctionController extends Controller
                     $column->row(function (Row $row) {
                         $row->column(12, function (Column $column) {
                             $form = new \ShaoZeMing\Merchant\Widgets\Form();
-                            $form->select('cat_id', '所属品类')->options(CategorieM::selectMerchantOptions('—'))->load('products','/merchant/api/cat/products');
+                            $form->select('cat_id', '所属品类')->options(CategoryM::selectMerchantOptions('—'))->load('products','/merchant/api/cat/products');
                             $form->text('malfunction_name', '故障名称')->rules('required');
                             $form->select('service_type_id', '服务类型')->options(ServiceTypeM::selectMerchantOptions());
                             $form->multipleSelect('products', '产品关联')->options(getMerchantInfo()->products()->get()->pluck('product_name', 'id'));
@@ -171,7 +171,7 @@ class MalfunctionController extends Controller
                 $filter->disableIdFilter();
                 $filter->like('malfunction_name','名称');
                 $filter->equal('service_type_id','服务类型')->select(ServiceTypeM::selectMerchantOptions());
-                $filter->equal('cat_id','分类')->select(CategorieM::selectMerchantOptions('—'));
+                $filter->equal('cat_id','分类')->select(CategoryM::selectMerchantOptions('—'));
                 $filter->between('created_at', '创建时间')->datetime();
             });
         });
@@ -185,7 +185,7 @@ class MalfunctionController extends Controller
     protected function form()
     {
         return Merchant::form(Malfunction::class, function (Form $form) {
-            $form->select('cat_id', '所属品类')->options(CategorieM::selectMerchantOptions('—'))->load('products','/merchant/api/cat/products');
+            $form->select('cat_id', '所属品类')->options(CategoryM::selectMerchantOptions('—'))->load('products','/merchant/api/cat/products');
             $form->text('malfunction_name', '故障名称')->rules('required');
             $form->select('service_type_id', '服务类型')->options(ServiceTypeM::selectMerchantOptions());
             $form->multipleSelect('products', '产品关联')->options(getMerchantInfo()->products()->get()->pluck('product_name', 'id'));
