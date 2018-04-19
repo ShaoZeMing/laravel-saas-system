@@ -7,6 +7,7 @@ use App\Entities\BrandM;
 use App\Entities\Category;
 use App\Entities\CategoryM;
 use App\Entities\Malfunction;
+use App\Entities\Standard;
 use App\Http\Controllers\Controller;
 use App\Repositories\CategoryRepositoryEloquent;
 use Illuminate\Http\Request;
@@ -77,7 +78,7 @@ class CategorieController extends Controller
      */
     protected function treeView()
     {
-        return CategoryM::tree(function (Tree $tree) {
+        $data = CategoryM::tree(function (Tree $tree) {
             $tree->query(function ($model) {
                 $merchant =getMerchantInfo();
                 $cats = $merchant->cats();
@@ -94,6 +95,7 @@ class CategorieController extends Controller
 //            $tree->disableRefresh();
 
         });
+        return $data;
     }
 
     /**
@@ -253,6 +255,29 @@ class CategorieController extends Controller
         $data = Malfunction::whereNotIn('id', $mftIds)->whereIn('cat_id', $q)->get(['id', DB::raw('malfunction_name as text')]);
         return $data;
     }
+
+    /**
+     * @author ShaoZeMing
+     * @email szm19920426@gmail.com
+     * @param Request $request
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function apiStandards(Request $request)
+    {
+        Log::info("分类查询规格",[$request,__METHOD__]);
+        $q = $request->get('q');
+        $res = getMerchantInfo()->standards()->get(['id'])->toArray();
+        $ids = array_column($res,'id');
+        Log::info("分类查询规格",[$q,$ids,__METHOD__]);
+        $mftIds = cache(getMerchantId().'_std_ids')?:[];
+        if(!$q){
+            $data = Category::find($q)->standards()->get(['id', DB::raw('standard_name as text')]);
+            return $data;
+        }
+        $data =   Category::find($q)->standards()->get(['standards.id', DB::raw('standard_name as text')]);
+        return $data;
+    }
+
 
     /**
      * @author ShaoZeMing

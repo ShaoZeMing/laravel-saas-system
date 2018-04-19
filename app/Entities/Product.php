@@ -77,6 +77,16 @@ class Product extends BaseModel
     }
 
     /**
+     * 规格
+     * @author ShaoZeMing
+     * @email szm19920426@gmail.com
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function standard(){
+        return $this->belongsTo(Standard::class);
+    }
+
+    /**
      * @author ShaoZeMing
      * @email szm19920426@gmail.com
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -41,6 +41,7 @@ use App\Traits\SequenceTrait;
 class Admin extends BaseModel
 {
     protected $guarded = [];
+
     public $incrementing = false;
 
 }

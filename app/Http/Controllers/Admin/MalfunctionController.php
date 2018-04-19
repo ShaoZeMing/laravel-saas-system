@@ -127,6 +127,7 @@ class MalfunctionController extends Controller
                 $form->url('resolvent_url','视频地址')->default('');
             });
 
+
         });
     }
 

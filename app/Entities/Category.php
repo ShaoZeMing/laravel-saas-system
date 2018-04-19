@@ -120,6 +120,15 @@ class Category extends BaseModel
     }
 
     /**
+     * 获取分类下所有的规格
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function standards()
+    {
+        return $this->hasMany(Standard::class, 'cat_id');
+    }
+
+    /**
      * @author ShaoZeMing
      * @email szm19920426@gmail.com
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

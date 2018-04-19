@@ -6,6 +6,7 @@ use App\Entities\Brand;
 use App\Entities\Category;
 use App\Entities\Malfunction;
 use App\Entities\Product;
+use App\Entities\Standard;
 use App\Http\Controllers\Controller;
 use App\Repositories\ProductRepository;
 use Encore\Admin\Controllers\ModelForm;
@@ -77,13 +78,12 @@ class ProductController extends Controller
             $catId = request()->get('cat_id');//搜索分类下的产品
             $where = $catId ? ['cat_id' => $catId] : [];
             $grid->model()->where($where)->orderBy('product_sort');
-//            $grid->id('ID')->sortable();
             $grid->column('product_name', '产品名称')->display(function($name) {
                 return "<a href='".url('admin/products/'.$this->id)."'>$name</a>";
             });
-            $grid->column('product_version', '产品型号');
-            $grid->column('product_size', '产品规格');
+            $grid->column('product_version', '产品编号');
             $grid->column('cat.cat_name', '产品分类');
+            $grid->column('standard.standard_name', '产品规格');
             $grid->column('brand.brand_name', '产品品牌');
             $grid->column('product_desc', '描述')->limit(30);
             $grid->column('product_state','状态')->switch();
@@ -93,6 +93,7 @@ class ProductController extends Controller
                 $filter->like('product_name','产品名称');
                 $filter->equal('brand_id','产品品牌')->select(Brand::all()->pluck('brand_name', 'id'));
                 $filter->equal('cat_id','产品分类')->select(Category::all()->pluck('cat_name', 'id'));
+                $filter->equal('standard_id','产品规格')->select(Standard::all()->pluck('standard_name', 'id'));
                 $filter->between('created_at', '创建时间')->datetime();
             });
 
@@ -110,9 +111,9 @@ class ProductController extends Controller
             $form->display('id', 'ID');
             $form->text('product_name', '产品名称')->rules('required');
             $form->text('product_version', '产品型号')->default('');
-            $form->text('product_size', '产品规格')->default('');
             $form->select('brand_id', '产品品牌')->options(Brand::all()->pluck('brand_name', 'id'))->load('cat_id','/admin/api/brand/cats');
-            $form->select('cat_id', '产品分类')->options(Category::all()->pluck('cat_name', 'id'))->load('malfunctions','/admin/api/cat/malfunctions');
+            $form->select('cat_id', '产品分类')->options(Category::all()->pluck('cat_name', 'id'))->load('malfunctions','/admin/api/cat/malfunctions')->load('standard_id','/admin/api/cat/standards');
+            $form->select('standard_id', '产品规格')->options(Standard::all()->pluck('standard_name', 'id'));
             $form->multipleSelect('malfunctions', '故障类型')->options(Malfunction::all()->pluck('malfunction_name', 'id'));
             $form->textarea('product_desc', '描述');
             $form->number('product_sort', '排序')->setWidth(2);

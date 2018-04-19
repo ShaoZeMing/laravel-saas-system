@@ -1,14 +1,13 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.5.28 on 2018-01-03.
+ * Generated for Laravel 5.5.40 on 2018-04-09 17:43:18.
+ *
+ * This file should not be included in your code, only analyzed by your IDE!
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
  */
-namespace  {
-    exit("This file should not be included, only analyzed by your IDE");
-}
 
 namespace Illuminate\Support\Facades { 
 
@@ -894,7 +893,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Register a binding with the container.
          *
-         * @param string|array $abstract
+         * @param string $abstract
          * @param \Closure|string|null $concrete
          * @param bool $shared
          * @return void 
@@ -980,7 +979,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Register a shared binding in the container.
          *
-         * @param string|array $abstract
+         * @param string $abstract
          * @param \Closure|string|null $concrete
          * @return void 
          * @static 
@@ -1178,7 +1177,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Register a new resolving callback.
          *
-         * @param string $abstract
+         * @param \Closure|string $abstract
          * @param \Closure|null $callback
          * @return void 
          * @static 
@@ -1192,7 +1191,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Register a new after resolving callback for all types.
          *
-         * @param string $abstract
+         * @param \Closure|string $abstract
          * @param \Closure|null $callback
          * @return void 
          * @static 
@@ -2182,6 +2181,17 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Set the echo format to double encode entities.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function doubleEncode()
+        {
+            \Illuminate\View\Compilers\BladeCompiler::doubleEncode();
+        }
+        
+        /**
          * Get the path to the compiled version of a view.
          *
          * @param string $path
@@ -2585,8 +2595,8 @@ namespace Illuminate\Support\Facades {
          * @param string $key The key of the item to store.
          * @param mixed $value The value of the item to store, must be serializable.
          * @param null|int|\DateInterval $ttl Optional. The TTL value of this item. If no value is sent and
-         *                                     the driver supports TTL then the library may set a default value
-         *                                     for it or let the driver take care of that.
+         *                                      the driver supports TTL then the library may set a default value
+         *                                      for it or let the driver take care of that.
          * @return bool True on success and false on failure.
          * @throws \Psr\SimpleCache\InvalidArgumentException
          *   MUST be thrown if the $key string is not a legal value.
@@ -2615,8 +2625,8 @@ namespace Illuminate\Support\Facades {
          *
          * @param \Psr\SimpleCache\iterable $values A list of key => value pairs for a multiple-set operation.
          * @param null|int|\DateInterval $ttl Optional. The TTL value of this item. If no value is sent and
-         *                                      the driver supports TTL then the library may set a default value
-         *                                      for it or let the driver take care of that.
+         *                                       the driver supports TTL then the library may set a default value
+         *                                       for it or let the driver take care of that.
          * @return bool True on success and false on failure.
          * @throws \Psr\SimpleCache\InvalidArgumentException
          *   MUST be thrown if $values is neither an array nor a Traversable,
@@ -5856,7 +5866,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string|array $view
          * @param array $data
-         * @return \Illuminate\View\View 
+         * @return string 
          * @static 
          */ 
         public static function render($view, $data = array())
@@ -7100,7 +7110,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $key
          * @param mixed $default
-         * @return mixed 
+         * @return \Symfony\Component\HttpFoundation\ParameterBag|mixed 
          * @static 
          */ 
         public static function json($key = null, $default = null)
@@ -7200,7 +7210,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Set the JSON payload for the request.
          *
-         * @param array $json
+         * @param \Symfony\Component\HttpFoundation\ParameterBag $json
          * @return $this 
          * @static 
          */ 
@@ -7326,7 +7336,7 @@ namespace Illuminate\Support\Facades {
          * @param array $cookies The COOKIE parameters
          * @param array $files The FILES parameters
          * @param array $server The SERVER parameters
-         * @param string|resource $content The raw body data
+         * @param string|resource|null $content The raw body data
          * @static 
          */ 
         public static function initialize($query = array(), $request = array(), $attributes = array(), $cookies = array(), $files = array(), $server = array(), $content = null)
@@ -7359,7 +7369,7 @@ namespace Illuminate\Support\Facades {
          * @param array $cookies The request cookies ($_COOKIE)
          * @param array $files The request files ($_FILES)
          * @param array $server The server parameters ($_SERVER)
-         * @param string $content The raw body data
+         * @param string|resource|null $content The raw body data
          * @return static 
          * @static 
          */ 
@@ -11348,6 +11358,17 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Get the default named parameters used by the URL generator.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getDefaultParameters()
+        {
+            return \Illuminate\Routing\UrlGenerator::getDefaultParameters();
+        }
+        
+        /**
          * Force the scheme for URLs.
          *
          * @param string $schema
@@ -12817,192 +12838,6 @@ namespace Intervention\Image\Facades {
  
 }
 
-namespace Encore\Admin\Facades { 
-
-    class Admin {
-        
-        /**
-         * 
-         *
-         * @param $model
-         * @param \Closure $callable
-         * @return \Encore\Admin\Grid 
-         * @static 
-         */ 
-        public static function grid($model, $callable)
-        {
-            return \Encore\Admin\Admin::grid($model, $callable);
-        }
-        
-        /**
-         * 
-         *
-         * @param $model
-         * @param \Closure $callable
-         * @return \Encore\Admin\Form 
-         * @static 
-         */ 
-        public static function form($model, $callable)
-        {
-            return \Encore\Admin\Admin::form($model, $callable);
-        }
-        
-        /**
-         * Build a tree.
-         *
-         * @param $model
-         * @return \Encore\Admin\Tree 
-         * @static 
-         */ 
-        public static function tree($model, $callable = null)
-        {
-            return \Encore\Admin\Admin::tree($model, $callable);
-        }
-        
-        /**
-         * 
-         *
-         * @param \Closure $callable
-         * @return \Encore\Admin\Layout\Content 
-         * @static 
-         */ 
-        public static function content($callable = null)
-        {
-            return \Encore\Admin\Admin::content($callable);
-        }
-        
-        /**
-         * 
-         *
-         * @param $model
-         * @return mixed 
-         * @static 
-         */ 
-        public static function getModel($model)
-        {
-            return \Encore\Admin\Admin::getModel($model);
-        }
-        
-        /**
-         * Add css or get all css.
-         *
-         * @param null $css
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void 
-         * @static 
-         */ 
-        public static function css($css = null)
-        {
-            return \Encore\Admin\Admin::css($css);
-        }
-        
-        /**
-         * Add js or get all js.
-         *
-         * @param null $js
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void 
-         * @static 
-         */ 
-        public static function js($js = null)
-        {
-            return \Encore\Admin\Admin::js($js);
-        }
-        
-        /**
-         * 
-         *
-         * @param string $script
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void 
-         * @static 
-         */ 
-        public static function script($script = '')
-        {
-            return \Encore\Admin\Admin::script($script);
-        }
-        
-        /**
-         * Left sider-bar menu.
-         *
-         * @return array 
-         * @static 
-         */ 
-        public static function menu()
-        {
-            return \Encore\Admin\Admin::menu();
-        }
-        
-        /**
-         * Get admin title.
-         *
-         * @return \Config 
-         * @static 
-         */ 
-        public static function title()
-        {
-            return \Encore\Admin\Admin::title();
-        }
-        
-        /**
-         * Get current login user.
-         *
-         * @return mixed 
-         * @static 
-         */ 
-        public static function user()
-        {
-            return \Encore\Admin\Admin::user();
-        }
-        
-        /**
-         * Set navbar.
-         *
-         * @param \Closure|null $builder
-         * @return \Encore\Admin\Navbar 
-         * @static 
-         */ 
-        public static function navbar($builder = null)
-        {
-            return \Encore\Admin\Admin::navbar($builder);
-        }
-        
-        /**
-         * Get navbar object.
-         *
-         * @return \Encore\Admin\Widgets\Navbar 
-         * @static 
-         */ 
-        public static function getNavbar()
-        {
-            return \Encore\Admin\Admin::getNavbar();
-        }
-        
-        /**
-         * Register the auth routes.
-         *
-         * @return void 
-         * @static 
-         */ 
-        public static function registerAuthRoutes()
-        {
-            \Encore\Admin\Admin::registerAuthRoutes();
-        }
-        
-        /**
-         * Extend a extension.
-         *
-         * @param string $name
-         * @param string $class
-         * @return void 
-         * @static 
-         */ 
-        public static function extend($name, $class)
-        {
-            \Encore\Admin\Admin::extend($name, $class);
-        }
-         
-    }
- 
-}
-
 namespace ShaoZeMing\Merchant\Facades { 
 
     class Merchant {
@@ -13183,6 +13018,192 @@ namespace ShaoZeMing\Merchant\Facades {
         public static function extend($name, $class)
         {
             \ShaoZeMing\Merchant\Merchant::extend($name, $class);
+        }
+         
+    }
+ 
+}
+
+namespace Encore\Admin\Facades { 
+
+    class Admin {
+        
+        /**
+         * 
+         *
+         * @param $model
+         * @param \Closure $callable
+         * @return \Encore\Admin\Grid 
+         * @static 
+         */ 
+        public static function grid($model, $callable)
+        {
+            return \Encore\Admin\Admin::grid($model, $callable);
+        }
+        
+        /**
+         * 
+         *
+         * @param $model
+         * @param \Closure $callable
+         * @return \Encore\Admin\Form 
+         * @static 
+         */ 
+        public static function form($model, $callable)
+        {
+            return \Encore\Admin\Admin::form($model, $callable);
+        }
+        
+        /**
+         * Build a tree.
+         *
+         * @param $model
+         * @return \Encore\Admin\Tree 
+         * @static 
+         */ 
+        public static function tree($model, $callable = null)
+        {
+            return \Encore\Admin\Admin::tree($model, $callable);
+        }
+        
+        /**
+         * 
+         *
+         * @param \Closure $callable
+         * @return \Encore\Admin\Layout\Content 
+         * @static 
+         */ 
+        public static function content($callable = null)
+        {
+            return \Encore\Admin\Admin::content($callable);
+        }
+        
+        /**
+         * 
+         *
+         * @param $model
+         * @return mixed 
+         * @static 
+         */ 
+        public static function getModel($model)
+        {
+            return \Encore\Admin\Admin::getModel($model);
+        }
+        
+        /**
+         * Add css or get all css.
+         *
+         * @param null $css
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void 
+         * @static 
+         */ 
+        public static function css($css = null)
+        {
+            return \Encore\Admin\Admin::css($css);
+        }
+        
+        /**
+         * Add js or get all js.
+         *
+         * @param null $js
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void 
+         * @static 
+         */ 
+        public static function js($js = null)
+        {
+            return \Encore\Admin\Admin::js($js);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $script
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void 
+         * @static 
+         */ 
+        public static function script($script = '')
+        {
+            return \Encore\Admin\Admin::script($script);
+        }
+        
+        /**
+         * Left sider-bar menu.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function menu()
+        {
+            return \Encore\Admin\Admin::menu();
+        }
+        
+        /**
+         * Get admin title.
+         *
+         * @return \Config 
+         * @static 
+         */ 
+        public static function title()
+        {
+            return \Encore\Admin\Admin::title();
+        }
+        
+        /**
+         * Get current login user.
+         *
+         * @return mixed 
+         * @static 
+         */ 
+        public static function user()
+        {
+            return \Encore\Admin\Admin::user();
+        }
+        
+        /**
+         * Set navbar.
+         *
+         * @param \Closure|null $builder
+         * @return \Encore\Admin\Navbar 
+         * @static 
+         */ 
+        public static function navbar($builder = null)
+        {
+            return \Encore\Admin\Admin::navbar($builder);
+        }
+        
+        /**
+         * Get navbar object.
+         *
+         * @return \Encore\Admin\Widgets\Navbar 
+         * @static 
+         */ 
+        public static function getNavbar()
+        {
+            return \Encore\Admin\Admin::getNavbar();
+        }
+        
+        /**
+         * Register the auth routes.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function registerAuthRoutes()
+        {
+            \Encore\Admin\Admin::registerAuthRoutes();
+        }
+        
+        /**
+         * Extend a extension.
+         *
+         * @param string $name
+         * @param string $class
+         * @return void 
+         * @static 
+         */ 
+        public static function extend($name, $class)
+        {
+            \Encore\Admin\Admin::extend($name, $class);
         }
          
     }
@@ -13570,7 +13591,7 @@ namespace  {
              * @static 
              */ 
             public static function paginate($perPage = null, $columns = array(), $pageName = 'page', $page = null)
-            {
+            {    
                 return \Illuminate\Database\Eloquent\Builder::paginate($perPage, $columns, $pageName, $page);
             }
          
@@ -13794,7 +13815,7 @@ namespace  {
              * Execute the query and get the first result.
              *
              * @param array $columns
-             * @return \Illuminate\Database\Eloquent\Model|static|null 
+             * @return \Illuminate\Database\Eloquent\Model|object|static|null 
              * @static 
              */ 
             public static function first($columns = array())
@@ -14171,6 +14192,21 @@ namespace  {
             public static function mergeWheres($wheres, $bindings)
             {    
                 \Illuminate\Database\Query\Builder::mergeWheres($wheres, $bindings);
+            }
+         
+            /**
+             * Prepare the value and operator for a where clause.
+             *
+             * @param string $value
+             * @param string $operator
+             * @param bool $useDefault
+             * @return array 
+             * @throws \InvalidArgumentException
+             * @static 
+             */ 
+            public static function prepareValueAndOperator($value, $operator, $useDefault = false)
+            {    
+                return \Illuminate\Database\Query\Builder::prepareValueAndOperator($value, $operator, $useDefault);
             }
          
             /**
@@ -14933,6 +14969,17 @@ namespace  {
             }
          
             /**
+             * Determine if no rows exist for the current query.
+             *
+             * @return bool 
+             * @static 
+             */ 
+            public static function doesntExist()
+            {    
+                return \Illuminate\Database\Query\Builder::doesntExist();
+            }
+         
+            /**
              * Retrieve the "count" result of the query.
              *
              * @param string $columns
@@ -15312,9 +15359,9 @@ namespace  {
 
     class Image extends \Intervention\Image\Facades\Image {}
 
-    class Admin extends \Encore\Admin\Facades\Admin {}
-
     class Merchant extends \ShaoZeMing\Merchant\Facades\Merchant {}
+
+    class Admin extends \Encore\Admin\Facades\Admin {}
  
 }
 
@@ -15875,6 +15922,8 @@ if (! function_exists('dd')) {
      */
     function dd(...$args)
     {
+        http_response_code(500);
+
         foreach ($args as $x) {
             (new Dumper)->dump($x);
         }
@@ -15888,15 +15937,16 @@ if (! function_exists('e')) {
      * Escape HTML special characters in a string.
      *
      * @param  \Illuminate\Contracts\Support\Htmlable|string  $value
+     * @param  bool  $doubleEncode
      * @return string
      */
-    function e($value)
+    function e($value, $doubleEncode = false)
     {
         if ($value instanceof Htmlable) {
             return $value->toHtml();
         }
 
-        return htmlspecialchars($value, ENT_QUOTES, 'UTF-8', false);
+        return htmlspecialchars($value, ENT_QUOTES, 'UTF-8', $doubleEncode);
     }
 }
 
@@ -16039,7 +16089,7 @@ if (! function_exists('optional')) {
      * @param  mixed  $value
      * @return mixed
      */
-    function optional($value)
+    function optional($value = null)
     {
         return new Optional($value);
     }
@@ -16186,7 +16236,7 @@ if (! function_exists('str_is')) {
     /**
      * Determine if a given string matches a given pattern.
      *
-     * @param  string  $pattern
+     * @param  string|array  $pattern
      * @param  string  $value
      * @return bool
      */

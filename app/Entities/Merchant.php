@@ -144,6 +144,11 @@ class Merchant extends BaseModel
         return $this->belongsToMany(Category::class, 'merchant_categories','merchant_id','cat_id');
 
     }
+    public function standards()
+    {
+        return $this->belongsToMany(Standard::class, 'merchant_standards','merchant_id','standard_id');
+
+    }
 
     public function products()
     {

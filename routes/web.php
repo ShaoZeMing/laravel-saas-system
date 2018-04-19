@@ -47,6 +47,7 @@ Route::group([
     $router->resource('cats', CategorieController::class);
     $router->get('api/cat','CategorieController@apiCats');
     $router->get('api/cat/malfunctions','CategorieController@apiMalfunctions');
+    $router->get('api/cat/standards','CategorieController@apiStandards');
     $router->get('api/cat/products','CategorieController@apiProducts');
 
 

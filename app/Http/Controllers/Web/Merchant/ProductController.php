@@ -7,6 +7,7 @@ use App\Entities\CategoryM;
 use App\Entities\Malfunction;
 use App\Entities\MerchantProduct;
 use App\Entities\Product;
+use App\Entities\Standard;
 use App\Http\Controllers\Controller;
 use App\Repositories\ProductRepository;
 use App\Repositories\ProductRepositoryEloquent;
@@ -146,10 +147,10 @@ class ProductController extends Controller
     {
         return Merchant::form(Product::class, function (Form $form) {
             $form->text('product_name', '产品名称')->rules('required');
-            $form->text('product_version', '产品型号')->default('&nbsp;');
-            $form->text('product_size', '产品规格')->default('&nbsp;');
-            $form->select('brand_id', '产品品牌')->options(BrandM::selectMerchantOptions('—'));
-            $form->select('cat_id', '产品分类')->options(CategoryM::selectMerchantOptions('—'))->load('malfunctions','/merchant/api/cat/malfunctions');
+            $form->text('product_version', '产品型号')->default('');
+            $form->select('brand_id', '产品品牌')->options(BrandM::selectMerchantOptions('—'))->load('cat_id','/merchant/api/brand/cats');
+            $form->select('cat_id', '产品分类')->options(CategoryM::selectMerchantOptions('—'))->load('malfunctions','/merchant/api/cat/malfunctions')->load('standard_id','/merchant/api/cat/standards');
+            $form->select('standard_id', '产品规格')->options(Standard::all()->pluck('standard_name', 'id'));
             $form->multipleSelect('malfunctions', '故障类型')->options(getMerchantInfo()->malfunctions()->get()->pluck('malfunction_name', 'id'));
             $form->textarea('product_desc', '产品描述');
             $form->saved(function (Form $form){

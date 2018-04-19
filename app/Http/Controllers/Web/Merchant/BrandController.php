@@ -75,7 +75,7 @@ class BrandController extends Controller
          */
         protected function treeView()
     {
-        return BrandM::tree(function (Tree $tree) {
+        $data =  BrandM::tree(function (Tree $tree) {
             $tree->query(function ($model) {
                 $merchant =getMerchantInfo();
                 $cats = $merchant->brands();
@@ -89,8 +89,8 @@ class BrandController extends Controller
             $tree->disableCreate();
             $tree->disableSave();
 //            $tree->disableRefresh();
-
         });
+        return $data;
     }
 
         /**
@@ -224,6 +224,21 @@ class BrandController extends Controller
     public function apiCats(Request $request,BrandRepositoryEloquent $brandRepository)
     {
         $q = $request->get('q');
-        return  $brandRepository->find($q)->cats()->get(['categories.id', DB::raw('cat_name as text')]);
+        $res = getMerchantInfo()->cats()->get(['id'])->toArray();
+        $ids = array_column($res,'id');
+        Log::info('商家品牌查询分类',[$ids,__METHOD__]);
+        return  $brandRepository->find($q)->cats()->whereIn('id',$ids)->get(['categories.id', DB::raw('cat_name as text')]);
     }
+
+//    /**
+//     * @author ShaoZeMing
+//     * @email szm19920426@gmail.com
+//     * @param Request $request
+//     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|int|null|static|static[]
+//     */
+//    public function apiCats(Request $request,BrandRepositoryEloquent $brandRepository)
+//    {
+//        $q = $request->get('q');
+//        return  $brandRepository->find($q)->cats()->get(['categories.id', DB::raw('cat_name as text')]);
+//    }
 }

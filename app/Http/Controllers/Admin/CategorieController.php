@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Entities\Brand;
 use App\Entities\CategoryA;
 use App\Entities\Malfunction;
+use App\Entities\Standard;
 use App\Http\Controllers\Controller;
 use App\Repositories\CategoryRepository;
 use App\Repositories\CategoryRepositoryEloquent;
@@ -207,6 +208,19 @@ class CategorieController extends Controller
     {
         $q = $request->get('q');
         $data =  Malfunction::where('cat_id', $q)->get(['id', DB::raw('malfunction_name as text')]);
+        return $data;
+    }
+
+    /**
+     * @author ShaoZeMing
+     * @email szm19920426@gmail.com
+     * @param Request $request
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function apiStandards(Request $request)
+    {
+        $q = $request->get('q');
+        $data =  Standard::where('cat_id', $q)->get(['id', DB::raw('standard_name as text')]);
         return $data;
     }
 
