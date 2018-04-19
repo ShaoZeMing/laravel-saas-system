@@ -1,0 +1,5 @@
+INSERT INTO MERCHANT_permissions (id, name, slug, http_method, http_path , created_at, updated_at) VALUES (1, 'All permission', '*', '', '*' , NULL, NULL), (2, 'Dashboard', 'dashboard', 'GET', '/' , NULL, NULL), (3, 'Login', 'auth.login', '', '/auth/login
+/auth/logout' , NULL, NULL), (4, 'User setting', 'auth.setting', 'GET,PUT', '/auth/setting' , NULL, NULL), (5, 'Auth management', 'auth.management', '', '/auth/roles
+/auth/permissions
+/auth/menu
+/auth/logs', NULL, NULL), (6, 'Admin helpers', 'ext.helpers', NULL, '/helpers/*' , '2017-12-18 09:40:36', '2017-12-18 09:40:36'), (7, 'Logs', 'ext.log-viewer', NULL, '/logs*' , '2017-12-18 09:40:42', '2017-12-18 09:40:42'), (8, 'Exceptions reporter', 'ext.reporter', NULL, '/exceptions*' , '2017-12-18 09:40:55', '2017-12-18 09:40:55'), (9, 'Media manager', 'ext.media-manager', NULL, '/media*' , '2017-12-19 22:48:07', '2017-12-19 22:48:07');

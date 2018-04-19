@@ -1,0 +1,1 @@
+INSERT INTO merchant_role_menu (role_id, menu_id, created_at, updated_at) VALUES (1, 2, NULL, NULL), (1, 2, NULL, NULL), (1, 2, NULL, NULL), (1, 8, NULL, NULL), (1, 9, NULL, NULL), (1, 10, NULL, NULL), (1, 11, NULL, NULL), (1, 12, NULL, NULL), (1, 13, NULL, NULL), (1, 14, NULL, NULL), (1, 15, NULL, NULL), (1, 16, NULL, NULL), (1, 17, NULL, NULL);

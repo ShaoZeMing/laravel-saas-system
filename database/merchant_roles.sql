@@ -1,0 +1,1 @@
+INSERT INTO merchant_roles (id, name, slug, created_at, updated_at) VALUES (1, '超级管理员', 'administrator', '2017-12-27 23:12:52', '2017-12-27 23:12:52');

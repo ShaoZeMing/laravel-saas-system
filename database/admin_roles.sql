@@ -1,0 +1,1 @@
+INSERT INTO admin_roles (id, name, slug, created_at, updated_at) VALUES (1, '超级管理员', 'administrator', '2017-12-18 09:40:15', '2017-12-18 09:40:15');
