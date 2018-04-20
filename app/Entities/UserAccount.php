@@ -35,4 +35,40 @@ class UserAccount extends BaseModel
 
     protected $guarded = [];
 
+
+    /**
+     * 所属账户
+     *
+     * @author gengzhiguo@xiongmaojinfu.com
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function transform()
+    {
+        $fields = [
+            'balance',
+            'available',
+            'freeze',
+            'income',
+            'paid'
+        ];
+        foreach ($fields as $field) {
+            if (isset($this->{$field})) {
+                $this->{$field} = fenToYuan($this->{$field});
+            }
+        }
+        $fieldids=[
+            'user_id',
+        ];
+        foreach ($fieldids as $fieldId) {
+            if (isset($this->{$fieldId})) {
+                $this->{$fieldId} = hashIdEncode($this->{$fieldId});
+            }
+        }
+        return $this->toArray();
+    }
 }

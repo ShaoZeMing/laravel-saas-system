@@ -78,7 +78,7 @@ class User extends BaseModel
 
     public function account()
     {
-        return $this->hasOne(UserAccount::class,'id','id');
+        return $this->hasOne(UserAccount::class);
     }
 
     public function bills()

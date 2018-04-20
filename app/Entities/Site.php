@@ -85,7 +85,7 @@ class Site extends BaseModel
 
     public function account()
     {
-        return $this->hasOne(SiteAccount::class,'id','id');
+        return $this->hasOne(SiteAccount::class);
     }
 
     public function bills()

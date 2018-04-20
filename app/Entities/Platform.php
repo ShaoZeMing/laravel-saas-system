@@ -42,7 +42,7 @@ class Platform extends BaseModel
 
     public function account()
     {
-        return $this->hasOne(PlatformAccount::class,'id','id');
+        return $this->hasOne(PlatformAccount::class);
     }
 
     public function bills()

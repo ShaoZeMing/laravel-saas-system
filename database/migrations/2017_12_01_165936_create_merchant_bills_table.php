@@ -27,6 +27,7 @@ class CreateMerchantBillsTable extends Migration
             $table->string('billable_type',64)->default('')->comment('关联对象');
             $table->tinyInteger('biz_type')->default(0)->comment('业务类型 -1支出 1充值 -2 冻结 2 解冻 3退款 5线下充值');
             $table->string('biz_comment',20)->default('')->comment('业务类型说明');
+            $table->string('desc',200)->default('')->comment('备注');
             $table->timestamps();
             $table->primary('id');
             $table->index(['billable_id','billable_type']);

@@ -82,7 +82,7 @@ class Worker extends BaseModel
 
     public function account()
     {
-        return $this->hasOne(WorkerAccount::class,'id','id');
+        return $this->hasOne(WorkerAccount::class);
     }
 
     public function bills()

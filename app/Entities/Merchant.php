@@ -194,7 +194,7 @@ class Merchant extends BaseModel
 
     public function account()
     {
-        return $this->hasOne(MerchantAccount::class,'id','id');
+        return $this->hasOne(MerchantAccount::class);
     }
 
     public function bills()

@@ -36,10 +36,40 @@ class MerchantAccount extends BaseModel
 {
 
     protected $guarded = [];
-    public $incrementing = false;
-
-    public function merchant(){
-      return $this->belongsTo(Merchant::class,'id','id');
+    /**
+     * 所属账户
+     *
+     * @author gengzhiguo@xiongmaojinfu.com
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function merchant()
+    {
+        return $this->belongsTo(Merchant::class);
     }
 
+    public function transform()
+    {
+        $fields = [
+            'balance',
+            'available',
+            'freeze',
+            'income',
+            'paid'
+        ];
+        foreach ($fields as $field) {
+            if (isset($this->{$field})) {
+                $this->{$field} = fenToYuan($this->{$field});
+            }
+        }
+        $fieldids=[
+            'merchant_id',
+        ];
+        foreach ($fieldids as $fieldId) {
+            if (isset($this->{$fieldId})) {
+                $this->{$fieldId} = hashIdEncode($this->{$fieldId});
+            }
+        }
+        return $this->toArray();
+    }
+    
 }
